@@ -16,7 +16,10 @@
         "connectfast895f7473": {}
       },
       "function": {
-        "connectfasta2482b21": {}
+        "connectfasta2482b21": {
+          "deploymentBucketName": "amplify-amplify90618c92dcd24-staging-82319-deployment",
+          "s3Key": "amplify-builds/connectfasta2482b21-48786a71657768487349-build.zip"
+        }
       }
     }
   }
