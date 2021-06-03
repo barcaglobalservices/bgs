@@ -6,7 +6,7 @@ import {FiChevronsRight} from 'react-icons/fi'
       <>
         <div class="home-container">
           <h1>
-            Welcome, how can we help you.
+            Welcome, how can we help you?
           </h1>
           <FiChevronsRight /> <input class="first_input" autofocus />
         </div>
