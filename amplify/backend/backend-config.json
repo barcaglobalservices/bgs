@@ -24,5 +24,12 @@
         }
       }
     }
+  },
+  "function": {
+    "connectfasta2482b21": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }

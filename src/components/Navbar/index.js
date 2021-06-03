@@ -26,10 +26,10 @@ class Navbar extends Component{
       closeMenu(event) {
         
             if(this.state.showMenu){
-                this.setState({showMenu: false})
+                this.setState({showMenu = false});
             }
           
-        }
+        
       }
     render() {
     return (
