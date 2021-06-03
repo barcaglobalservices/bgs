@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, MenuButton, SubMenu, MenuSubButton, SubMenuItems, SubMenuList} from './NavbarElements';
+import logo from '../../assets/logo.svg';
 
 class Navbar extends Component{
     
@@ -37,7 +38,7 @@ class Navbar extends Component{
         <>
          <Nav>
              <NavLink to="/">
-                 BGS
+                 <img src={logo} height="32px"/>
              </NavLink>
              <Bars />
              <NavMenu>
