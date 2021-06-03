@@ -18,9 +18,11 @@ class Navbar extends Component{
     showMenu(event) {
         event.preventDefault();
         
-        this.setState({ showMenu: true }, () => {
-          document.addEventListener('click', this.closeMenu);
-        });
+        this.setState({ showMenu: true });
+        
+        if(this.state.showMenu){
+            this.setState({ showMenu: false });
+        }
       }
       
       closeMenu(event) {
