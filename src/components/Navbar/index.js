@@ -25,11 +25,9 @@ class Navbar extends Component{
       
       closeMenu(event) {
         
-        if (!this.dropdownMenu.contains(event.target)) {
-          
-          this.setState({ showMenu: false }, () => {
-            document.removeEventListener('click', this.closeMenu);
-          });  
+            if(this.state.showMenu){
+                this.setState({showMenu: false})
+            }
           
         }
       }
