@@ -34,12 +34,20 @@ type Note @model
   image: String
 }
   
-type Products@model 
+type Products @model 
   @auth(rules: [{ allow: public, operations: [read] }])
   {
     id: ID!
     name: String!
     description: String
-    price: Float
-    quantity: Float
+}
+
+type Company @model 
+  @auth(rules: [{ allow: public, operations: [read] }])
+  {
+    id: ID!
+    name: String!
+    country: String!
+    city: String!
+    street: String!
   }

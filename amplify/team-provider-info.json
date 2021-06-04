@@ -13,12 +13,17 @@
     },
     "categories": {
       "auth": {
-        "connectfast895f7473": {}
+        "connectfast895f7473": {},
+        "userPoolGroups": {}
       },
       "function": {
         "connectfasta2482b21": {
           "deploymentBucketName": "amplify-amplify90618c92dcd24-staging-82319-deployment",
           "s3Key": "amplify-builds/connectfasta2482b21-48786a71657768487349-build.zip"
+        },
+        "AdminQueries7ee23cae": {
+          "deploymentBucketName": "amplify-amplify90618c92dcd24-staging-82319-deployment",
+          "s3Key": "amplify-builds/AdminQueries7ee23cae-7742676c317a71334164-build.zip"
         }
       }
     }

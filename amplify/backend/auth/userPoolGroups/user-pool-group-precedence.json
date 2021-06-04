@@ -1,6 +1,6 @@
 [
-  {
-    "groupName": "Users",
-    "precedence": 1
-  }
+    {
+        "groupName": "Users",
+        "precedence": 1
+    }
 ]

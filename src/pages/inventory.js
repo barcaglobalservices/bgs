@@ -1,18 +1,20 @@
 import React from 'react'
-import {FiChevronsRight} from 'react-icons/fi'
-import { withAuthenticator } from '@aws-amplify/ui-react';
+import ProductForm from '../components/Products/ProductForm'
 
  const Inventory = () => {
     return (
       <>
-        <div class="home-container">
+        <div>
          <h1>
              Check your inventory here.
          </h1>
+         
+         <ProductForm />
+  
         </div>
       
       </>
     )
 }
 
-export default withAuthenticator(Inventory);
+export default Inventory;

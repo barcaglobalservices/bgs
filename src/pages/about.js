@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import hongkong from '../assets/amsterdam.jpg';
+import React from 'react';
 
 function About() {
   // Declare a new state variable, which we'll call "count"
@@ -8,23 +7,14 @@ function About() {
       <>
     <h1>
         The Story of <br></br>
-        Barca Global Services
+        ConnectFast
     </h1>
-    <div class="text-container">
+    <div className="text-container">
    
     <p>
-       Quite a confusing name, and nothing to do with the city of Spain. 
-        But this isn't true, but the establishment go way back in the past. 
-        Since Barca is the italian translation of family name of the founder of this organisation. 
+      Connect Faster than Usain Bolt
     </p>
-    <p>
-        Back on the 18th of August 1811, the Netherlands was ruled by the French invader Napeleon. Who introduced the law, that every citizen needs to have a last name and be registered as a dutch citizen. 
-        Most of the families based their name on Ancenstry names, geographical names, occupational names or propertynames. So my anchestors most like took their occupational name as a family name. 
-        
-    </p>
-    <p>
-        
-    </p>
+
     </div>
     
   </>

@@ -38,7 +38,7 @@ class Navbar extends Component{
         <>
          <Nav>
              <NavLink to="/">
-                 <img src={logo} height="32px"/>
+                 <img src={logo} height="32px" alt="logo"/>
              </NavLink>
              <Bars />
              <NavMenu>
@@ -51,7 +51,7 @@ class Navbar extends Component{
                  <MenuButton to="/cases">
                      Cases
                  </MenuButton>
-                 <MenuButton to="/partners">
+                 <MenuButton to="/company">
                      Partners
                  </MenuButton>
              </NavMenu>
