@@ -1,51 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-import { useForm } from 'react-cool-form'
-import { DataStore } from '@aws-amplify/datastore';
-import { Products } from '../../../models';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '35ch',
-        },
-    },
-}));
-
-
-async function submit(values) {
-    values = JSON.stringify(values)
-    await DataStore.save(
-        new Products({
-            values
-        })
-    );
-    alert(values)
-}
+import { API } from 'aws-amplify';
+import { createProducts as createProductsMutation } from '../../../graphql/mutations';
 
 
 
-const ProductForm = () => {
 
-    const { form, getState } = useForm({
-        defaultValues: { "name": "", "description": "" },
-        onSubmit: values => submit(values)
-    })
+
+const initialFormState = { name: '', description: '' }
+
+function ProductForm() {
+    const [formData, setFormData] = useState(initialFormState);
+
+    async function createProduct() {
+        if (!formData.name || !formData.description) return;
+        await API.graphql({ query: createProductsMutation, variables: { input: formData } });
+        //  setNotes([ ...notes, formData ]);
+        setFormData(initialFormState);
+    }
     
-    const errors = getState("errors", { errorWithTouched: true });
-    console.log(errors)
-
     return (
 
-        <form ref={form} autoComplete="off" noValidate>
-            <TextField  name="name" label="Name" variant="filled" required error={errors.name}/>
-            <TextField name="description" label="Description" variant="filled" required error={errors.desciption}/>
-            <Button type="submit" variant="contained" color="primary">Add new Company</Button>
-        </form>
+        <>
+            <TextField onChange={e => setFormData({ ...formData, 'name': e.target.value })}
+                placeholder="Product name"
+                value={formData.name} />
+            <TextField  onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+        placeholder="Note descriptoin"
+        value={formData.description} />
+            <Button onClick={createProduct} variant="contained" color="primary">Create Product</Button>
 
+        </>
     )
 }
 

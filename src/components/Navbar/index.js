@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, MenuButton, SubMenu, MenuSubButton, SubMenuItems, SubMenuList} from './NavbarElements';
 import logo from '../../assets/logo.svg';
+import {  AmplifySignOut } from '@aws-amplify/ui-react';
+
 
 class Navbar extends Component{
     
-    constructor() {
-        super();
-        
+    constructor(props) {
+     super(props)
         this.state = {
           showMenu: false,
+          loggedIn: false,
+          username: this.props.user
         };
         
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
+
+        
+        console.log(this.state.username)
+     
       }
-    
+      
+      componentDidMount(){
+       // console.log(this.state.user)
+  
+       if(this.state.username !== undefined){
+           this.setState({loggedIn: true})
+       }
+    }
     showMenu(event) {
         event.preventDefault();
         
@@ -34,6 +48,7 @@ class Navbar extends Component{
         
       }
     render() {
+        
     return (
         <>
          <Nav>
@@ -48,19 +63,29 @@ class Navbar extends Component{
                  <MenuSubButton onClick={this.showMenu}>
                      Services
                  </MenuSubButton>
-                 <MenuButton to="/cases">
-                     Cases
+                 <MenuButton to="/blog">
+                     Features
                  </MenuButton>
                  <MenuButton to="/company">
                      Partners
                  </MenuButton>
              </NavMenu>
              
-             <NavBtn>
-                 <NavBtnLink to="/connect">
-                     Let's connect
-                 </NavBtnLink>
+            
+             {this.state.loggedIn ? (
+            <NavBtn>
+                 <AmplifySignOut />
              </NavBtn>
+             ):(
+                <NavBtn>
+                <NavBtnLink to="/connect">
+                    Let's connect
+                </NavBtnLink>
+            </NavBtn>
+             )}
+             
+       
+             
          </Nav>
          {
           this.state.showMenu

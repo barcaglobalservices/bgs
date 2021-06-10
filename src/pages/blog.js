@@ -1,20 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import '../App.css';
+import moment from 'moment';
+import { Auth } from 'aws-amplify';
+
+//UI
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+
+//END UI
 import { API } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listNotes } from '../graphql/queries';
 import { createNote as createNoteMutation, deleteNote as deleteNoteMutation } from '../graphql/mutations';
 
-const initialFormState = { name: '', description: '' }
+//USE STYLING
+const useStyles = makeStyles({
+  root: {
+    width: 300,
+    margin: 24,
+    padding: 24
 
+  },
+
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexFlow: 'row wrap'
+  }
+});
+
+const initialFormState = { name: '', description: '' }
 function Blog() {
+  const classes = useStyles();
+  const [user, setUser] = useState([null]);
   const [notes, setNotes] = useState([]);
   const [formData, setFormData] = useState(initialFormState);
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     fetchNotes();
+    getUser();
   }, []);
 
+  function getUser() {
+    Auth.currentAuthenticatedUser({
+      bypassCache: false  // Optional, By default is false. If set to true, this call will send a request to Cognito to get the latest user data
+    }).then(user => setUser(user)
+    )
+      .catch(err => console.log(err));
+  }
   async function fetchNotes() {
     const apiData = await API.graphql({ query: listNotes });
     setNotes(apiData.data.listNotes.items);
@@ -23,44 +67,74 @@ function Blog() {
   async function createNote() {
     if (!formData.name || !formData.description) return;
     await API.graphql({ query: createNoteMutation, variables: { input: formData } });
-    setNotes([ ...notes, formData ]);
+    setNotes([...notes, formData]);
     setFormData(initialFormState);
   }
 
   async function deleteNote({ id }) {
     const newNotesArray = notes.filter(note => note.id !== id);
     setNotes(newNotesArray);
-    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
+    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } } });
   }
+  function readUser(){
+    if(user.username === 'barcaglobalservices'){
+      setAdmin(true);
+    }else{
+      setAdmin(false);
+    }
+  }
+  
 
   return (
-    <div className="App">
-      <h1>My Notes App</h1>
-      <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-        placeholder="Note name"
-        value={formData.name}
-      />
-      <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-        placeholder="Note description"
-        value={formData.description}
-      />
-      <button onClick={createNote}>Create Note</button>
-      <div style={{marginBottom: 30}}>
+    <>
+     { admin ? <>
+      <div className="addForm">
+        <input
+          onChange={e => setFormData({ ...formData, 'name': e.target.value })}
+          placeholder="Feature"
+          value={formData.name}
+        />
+        <TextareaAutosize className="input" aria-label="empty textarea" placeholder="Empty"
+  
+          onChange={e => setFormData({ ...formData, 'description': e.target.value })}
+          value={formData.description}
+        />
+        <Button variant="outlined" color="primary" onClick={createNote}>Create Feature</Button>
+    </div>
+     </> : null }
+     <Button onClick={() => readUser()} variant="outlined" color="secondary" >Read user Info</Button>
+      <div style={{ marginBottom: 30 }} className={classes.card} >
         {
           notes.map(note => (
-            <div key={note.id || note.name}>
-              <h2>{note.name}</h2>
-              <p>{note.description}</p>
-              <button onClick={() => deleteNote(note)}>Delete note</button>
-            </div>
+            <Card className={classes.root} key={note.id || note.name}>
+              <CardContent>
+
+                <Typography variant="h4" component="p">
+                  {note.name}
+                </Typography>
+                <Typography className={classes.title} color="textSecondary" gutterBottom>
+                  {moment(note.createdAt).fromNow()}
+                </Typography>
+
+                <Typography variant="body2" component="p">
+                  {note.description}
+
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button size="small" variant="outlined" color="secondary" onClick={() => deleteNote(note)}>Complete Feature</Button>
+              </CardActions>
+            </Card>
+
+
           ))
         }
       </div>
-      <AmplifySignOut />
-    </div>
+      </>
   );
+ 
 }
+ 
 
-export default withAuthenticator(Blog);
+
+export default Blog;

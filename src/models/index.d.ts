@@ -52,6 +52,15 @@ export declare class Company {
   readonly country: string;
   readonly city: string;
   readonly street: string;
+  readonly owner?: string;
   constructor(init: ModelInit<Company>);
   static copyOf(source: Company, mutator: (draft: MutableModel<Company>) => MutableModel<Company> | void): Company;
+}
+
+export declare class Inventory {
+  readonly id: string;
+  readonly quantity?: number;
+  readonly price?: number;
+  constructor(init: ModelInit<Inventory>);
+  static copyOf(source: Inventory, mutator: (draft: MutableModel<Inventory>) => MutableModel<Inventory> | void): Inventory;
 }
