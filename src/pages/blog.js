@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
+import {useSnackbar} from 'notistack';
 
 //END UI
 import { API } from 'aws-amplify';
@@ -41,6 +42,7 @@ const useStyles = makeStyles({
 
 const initialFormState = { name: '', description: '' }
 function Blog() {
+  const {enqueueSnackbar, closeSnackbar} = useSnackbar();
   const classes = useStyles();
   const [user, setUser] = useState([null]);
   const [notes, setNotes] = useState([]);
@@ -69,12 +71,14 @@ function Blog() {
     await API.graphql({ query: createNoteMutation, variables: { input: formData } });
     setNotes([...notes, formData]);
     setFormData(initialFormState);
+    enqueueSnackbar('Succesfully added the note.', {variant: 'success'})
   }
 
   async function deleteNote({ id }) {
     const newNotesArray = notes.filter(note => note.id !== id);
     setNotes(newNotesArray);
     await API.graphql({ query: deleteNoteMutation, variables: { input: { id } } });
+    enqueueSnackbar('You deleted the feature. Thanks for working on it.', {variant: 'error'});
   }
   function readUser(){
     if(user.username === 'barcaglobalservices'){
@@ -102,7 +106,7 @@ function Blog() {
         <Button variant="outlined" color="primary" onClick={createNote}>Create Feature</Button>
     </div>
      </> : null }
-     <Button onClick={() => readUser()} variant="outlined" color="secondary" >Read user Info</Button>
+     <Button onClick={() => readUser()} variant="outlined" color="secondary" >If Admin add feature</Button>
       <div style={{ marginBottom: 30 }} className={classes.card} >
         {
           notes.map(note => (

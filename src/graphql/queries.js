@@ -351,6 +351,7 @@ export const getWarehouse = /* GraphQL */ `
   query GetWarehouse($id: ID!) {
     getWarehouse(id: $id) {
       id
+      name
       companyID
       createdAt
       updatedAt
@@ -369,6 +370,7 @@ export const listWarehouses = /* GraphQL */ `
     listWarehouses(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        name
         companyID
         createdAt
         updatedAt

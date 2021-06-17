@@ -3,7 +3,6 @@ import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink, MenuButton, SubMenu, Me
 import logo from '../../assets/logo.svg';
 import {  AmplifySignOut } from '@aws-amplify/ui-react';
 
-
 class Navbar extends Component{
     
     constructor(props) {
@@ -13,6 +12,7 @@ class Navbar extends Component{
           loggedIn: false,
           username: this.props.user
         };
+        
         
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
@@ -47,6 +47,8 @@ class Navbar extends Component{
           
         
       }
+      
+  
     render() {
         
     return (
@@ -58,11 +60,9 @@ class Navbar extends Component{
              <Bars />
              <NavMenu>
                  <MenuButton to="/about" >
-                     About
-                 </MenuButton>
-                 <MenuSubButton onClick={this.showMenu}>
                      Services
-                 </MenuSubButton>
+                 </MenuButton>
+              
                  <MenuButton to="/blog">
                      Features
                  </MenuButton>
@@ -71,6 +71,7 @@ class Navbar extends Component{
                  </MenuButton>
              </NavMenu>
              
+     
             
              {this.state.loggedIn ? (
             <NavBtn>

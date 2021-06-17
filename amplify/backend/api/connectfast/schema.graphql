@@ -84,6 +84,7 @@ type Warehouse @model
   @auth(rules: [{ allow: public, operations: [read] }])
  {
   id: ID!
+  name: String
   companyID: ID!
   employees: [Employee] @connection(keyName: "byWarehouse", fields: ["id"])
 }

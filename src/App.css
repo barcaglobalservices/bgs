@@ -1,10 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
 * {
  margin: 0;
-font-family: proximanova-regular,Arial, sans-serif;
+/* font-family: proximanova-regular,Helvetica, Arial, sans-serif; */
+font-family: 'Open Sans', sans-serif;
+    
 }
 
 .container{
     padding: 3rem;
+    margin: 2rem;
+    font-size: 12px !important;
+    color: #747474;
+}
+.adminSection{
+    display: flex;
+    flex-direction: row;
+    
+}
+.sidemenu{
+    flex:1;
+}
+.adminContainer{
+    flex:4;
 }
 
 h1{
@@ -18,13 +36,21 @@ h4{
 }
 p{
     line-height: 2;
-    font-size: 1.1rem;
+    font-size: 1.2em;
     font-weight: 200;
     margin: 1rem 0;
 }
 .text-container{
     width: 80vw;
 }
+.image-side{
+    align-content: center;
+}
+.image-side img{
+    width: 80%;
+}
+
+
 .input{
     border:none;
     width: 400px;

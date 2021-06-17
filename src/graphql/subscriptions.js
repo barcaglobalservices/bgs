@@ -287,6 +287,7 @@ export const onCreateWarehouse = /* GraphQL */ `
   subscription OnCreateWarehouse {
     onCreateWarehouse {
       id
+      name
       companyID
       createdAt
       updatedAt
@@ -300,6 +301,7 @@ export const onUpdateWarehouse = /* GraphQL */ `
   subscription OnUpdateWarehouse {
     onUpdateWarehouse {
       id
+      name
       companyID
       createdAt
       updatedAt
@@ -313,6 +315,7 @@ export const onDeleteWarehouse = /* GraphQL */ `
   subscription OnDeleteWarehouse {
     onDeleteWarehouse {
       id
+      name
       companyID
       createdAt
       updatedAt

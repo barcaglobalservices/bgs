@@ -151,7 +151,7 @@ border-radius: 4px;
 background: #fff;
 padding: 8px 22px;
 border-radius: 20px;
-border: 1px solid #000;
+border: 1px solid #155C2E;
 outline: none;
 color: #000;
 cursor: pointer;
@@ -160,7 +160,7 @@ text-decoration: none;
 
 &:hover{   
     transition: all 0.2s ease-in-out;
-    background: #000;
+    background: #155C2E;
     color: #fff; 
 }
 `

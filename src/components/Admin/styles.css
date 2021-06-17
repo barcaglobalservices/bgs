@@ -1,0 +1,12 @@
+.cardSection{
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+    flex-wrap: wrap;
+}
+.card{
+    flex:1 ;
+    align-self: center;
+    flex-basis: 150px;
+    padding: 1rem;
+}

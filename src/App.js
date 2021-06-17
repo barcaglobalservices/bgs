@@ -1,25 +1,28 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; 
 import Home from './pages';
 import About from './pages/about'
 import Blog from './pages/blog'
 import Company from './pages/company'
-import Inventory from './pages/inventory'
 import Admin from './pages/admin'
 import Auth from '@aws-amplify/auth';
+import {SnackbarProvider} from 'notistack';
+
 
 
 
 const App = () => {
   const [user, setUser] = useState()
   
+ 
+  
 
   useEffect(() => {
     async function getUserData(){
       const userInfo = await Auth.currentUserInfo();
-      const userData =  userInfo.attributes;
       const userName = userInfo.username;
       setUser(userName);
     }
@@ -30,22 +33,27 @@ const App = () => {
 
   
   return (
-    <Router>
+    <Router useSuspense={false}>
           <Navbar user={user} />   
      
         <div className="container">
+      <SnackbarProvider maxSnack={3}
+         classes={{
+          variantSuccess: "fontColor:'white'",
        
-        <Switch>
+      }}
+      >
+      <Switch>
         <Route path='/' exact component={Home} />
         <Route path='/about' exact component={About} />
         <Route path='/blog' exact component={Blog} />
         <Route path='/company' exact component={Company} />
-        <Route path='/inventory' exact component={Inventory} />
-        <Route path='/admin' exact component={Admin}/>
+        <Route path='/admin'  component={Admin}/>
       </Switch>
+      </SnackbarProvider>
    
         </div>
-    
+    <Footer />
     </Router>
     
   );

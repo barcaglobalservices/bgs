@@ -344,6 +344,7 @@ export const createWarehouse = /* GraphQL */ `
   ) {
     createWarehouse(input: $input, condition: $condition) {
       id
+      name
       companyID
       createdAt
       updatedAt
@@ -360,6 +361,7 @@ export const updateWarehouse = /* GraphQL */ `
   ) {
     updateWarehouse(input: $input, condition: $condition) {
       id
+      name
       companyID
       createdAt
       updatedAt
@@ -376,6 +378,7 @@ export const deleteWarehouse = /* GraphQL */ `
   ) {
     deleteWarehouse(input: $input, condition: $condition) {
       id
+      name
       companyID
       createdAt
       updatedAt

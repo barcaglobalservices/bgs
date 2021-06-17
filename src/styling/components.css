@@ -1,0 +1,96 @@
+.features{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    flex-basis: 100px;
+   
+}
+.box-feature h3{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.icon{
+    width: 64px;
+    align-content: center;
+    
+}
+.icon:hover{
+    animation-name: icon_animate;
+    animation-duration: 0.4s;
+}
+
+.box-feature{
+    font-weight: 100;
+    flex: 1;
+    flex-basis: 100px;
+    margin: 2rem;
+}
+.two-sided-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin:2rem 0;
+}
+
+.text-side{
+    flex: 1;
+flex-basis: 300px;
+padding: 2rem;
+    
+}
+.image-side{
+    flex:1;
+    flex-basis: 300px;
+    padding: 2rem;
+    align-self: center;
+}
+.image-side img{
+    max-width: 400px;
+}
+.teams{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.teams div{
+    flex:1;
+    padding: 2rem;
+    flex-basis: 169px;
+}
+
+.capabilities{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.capability{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin: 1rem;
+    align-items: center;
+    flex-basis: 25%;
+}
+.capability h1{
+    font-size: 1.2rem;
+}
+.teams img{
+    width: 50%;
+    padding: 2rem;
+    align-content:center;
+}
+
+
+
+/* Animatio */
+
+@keyframes icon_animate {
+    0%   {padding-bottom: 0rem}
+    25%  {padding-bottom: 1rem;}
+    50%  {padding-bottom: 2rem}
+    75%  {padding-bottom: 1rem;}
+    100% { padding-bottom: 0rem}
+  }
