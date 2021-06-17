@@ -57,14 +57,13 @@ function Inventory() {
   }
   
   async function addInventory(){
-    
       if (!formData.warehouseID || !formData.productID || !formData.inventoryAmount) return;
       await API.graphql({ query: createCurrentInventory, variables: { input: formData } });
       setInventories([...inventories, formData]);
       setFormData(initialFormState);
       enqueueSnackbar('Succesfully added the inventory.', {variant: 'success'})
-    
   }
+
 
 
   return (
@@ -119,6 +118,8 @@ function Inventory() {
       {
         inventories.map(inventory => (
           <div key={inventory.productID}>
+              <h3>{inventory.warehouseID}</h3>
+              <h3>{inventory.productID}</h3>
               <h4>{inventory.inventoryAmount}</h4>
           </div>
 

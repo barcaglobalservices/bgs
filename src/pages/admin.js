@@ -11,6 +11,8 @@ import Orders from '../components/Admin/Orders';
 import Customers from '../components/Admin/Customers';
 import Inventory from '../components/Admin/Inventory';
 import Blog from './blog';
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,41 +35,44 @@ function Admin() {
             <div className="adminSection">
                 <div className="sidemenu">
                     <Paper className={classes.paper}>
-                        <MenuList>
-                            <MenuItem>
-                                <Link to="/admin/company">
-                                Company
-                                </Link>
+                        <MenuList>   
+                            <Link to="/admin/company">
+                            <MenuItem>         
+                                Company    
                             </MenuItem>
-                            <MenuItem>
-                                <Link to="/admin/inventory">
-                                Inventory
-                                </Link>
+                            </Link>
+                            <Link to="/admin/inventory">
+                            <MenuItem>   
+                                Inventory  
                             </MenuItem>
-                            <MenuItem>
+                            </Link>
                             <Link to="/admin/products">
-                                Products
-                                </Link>
+                            <MenuItem>                         
+                                Products                         
                             </MenuItem>
-                            <MenuItem>
+                            </Link>
                             <Link to="/admin/warehouse">
-                                Warehouse
-                                </Link>
+                            <MenuItem>                       
+                                Warehouse                           
                             </MenuItem>
-                            <MenuItem>
+                            </Link>
                             <Link to="/admin/features">
-                                New Features
-                                </Link>
-                            </MenuItem>
-                            <MenuItem>
+                                <MenuItem>
+                                    New Features
+                                </MenuItem>
+                            </Link>
                             <Link to="/admin/customers">
+                            <MenuItem>                           
                                 Customers
-                                </Link>
                             </MenuItem>
-                            <MenuItem>
+                            </Link>
                             <Link to="/admin/orders">
+                            <MenuItem>
                                 Orders
-                                </Link>
+                            </MenuItem>
+                            </Link>
+                            <MenuItem>
+                                <AmplifySignOut />
                             </MenuItem>
                         </MenuList>
                     </Paper>
@@ -88,4 +93,4 @@ function Admin() {
         
     );
 }
-export default Admin
+export default withAuthenticator(Admin);
